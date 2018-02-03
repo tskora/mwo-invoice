@@ -1,6 +1,7 @@
 package pl.edu.agh.mwo.invoice.product;
 
 import java.math.BigDecimal;
+import java.lang.IllegalArgumentException;
 
 public abstract class Product {
 	private final String name;
@@ -9,8 +10,11 @@ public abstract class Product {
 
 	private final BigDecimal taxPercent;
 
-	protected Product(String name, BigDecimal price, BigDecimal tax) {
+	protected Product(String name, BigDecimal price, BigDecimal tax) throws IllegalArgumentException {
 		this.name = name;
+		if (name == null) {
+			throw new IllegalArgumentException();
+		}
 		this.price = price;
 		this.taxPercent = tax;
 	}
